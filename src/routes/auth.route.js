@@ -12,6 +12,7 @@ authRouter.get('/logout',logout);
 
 authRouter.post('/signup', signup);
 authRouter.get('/verify-email', verifyEmail);
+
 /*authRouter.post("/forgot-password", forgotPassword);
 
 authRouter.post("/reset-password/:token", resetPassword);*/

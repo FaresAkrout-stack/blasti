@@ -30,6 +30,11 @@ const ProUserSchema=new mongoose.Schema(
 			type: Boolean,
 			default: false,
 		},
+        role: {
+            type: String,
+            enum: ["user", "admin", "proUser"],
+            default: "user",
+          },
 		resetPasswordToken: String,
 		resetPasswordExpiresAt: Date,
 		verificationToken: String,

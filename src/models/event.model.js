@@ -6,7 +6,7 @@ const eventSchema=new mongoose.Schema(
         userId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User', 
-            required: true
+            
           },
           proUserId: {
             type: mongoose.Schema.Types.ObjectId,
@@ -16,7 +16,7 @@ const eventSchema=new mongoose.Schema(
           reservationId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Reservation', 
-            required: true
+            
           },
           earnings:{
             type:Double,
@@ -34,7 +34,7 @@ const eventSchema=new mongoose.Schema(
             required:true,
           },
           description:{
-            type:text,
+            type:String,
             required:true,
 
           },
@@ -47,6 +47,17 @@ const eventSchema=new mongoose.Schema(
           eventTime:{
             type:Date,
             required:true,
+          },
+          video: {
+            type: String,
+          },
+          image: {
+            type: String, 
+          },
+          status: {
+            type: String,
+            enum: ["pending", "approved", "rejected"],
+            default: "pending", 
           },
 
     },
