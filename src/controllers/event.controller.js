@@ -46,30 +46,4 @@ export const publishEvent = async (req, res) => {
     res.status(500).json({ success: false, msg: 'Error creating event', error: err.message });
   }
 };
-export const viewEvent= async(req,res)=>{
-  const {eventId}=req.body;
-  try{
-    const event=await Event.findById(eventId);
-    if(!event){
-      return res.status(400).json({ success: false, msg: 'Event not found'});
-    }
-    const EventDetails={
-      event:event,
-      eventCategorie:event.eventCategorie,
-      location:event.location,
-      description:event.description,
-      price:event.price,
-      capacity:event.capacity,
-      eventTime:event.eventTime,
-      image:event.image,
-      video:event.video,
-      rating:event.rating,
-    }
-    res.status(200).json({ success: true, msg: `Event found successfully`, EventDetails});
-
-  }catch(err){
-    res.status(500).json({success:false,msg:'error showing event details'});
-  }
-};
-
 
