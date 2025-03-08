@@ -135,4 +135,18 @@ export const cancelEvent=async(req,res)=>{
     console.error('Error deleting event:', error); 
     res.status(500).json({ success: false, msg: 'Error deleting event' });
   }
+};
+export const calculateRevenue=async(req,res)=>{
+  const {eventId}=req.body;
+  try {
+    const event=await Event.findById(eventId);
+    if(!event){
+      return res.status(400).json({success:false,msg:'event not found'});
+    }
+    const revenue=event.price*event.enrollments;
+    res.status(200).json({success:true,msg:'Revenue calculated successfully',data:`${revenue} DT`});
+  } catch (error) {
+    res.status(500).json({success:false,msg:'error calculating revenue'});
+    
+  }  
 }
