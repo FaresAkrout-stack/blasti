@@ -113,3 +113,26 @@ export const updateEventDetails = async (req, res) => {
     res.status(500).json({ success: false, msg: 'Error updating event info', error: error.message });
   }
 };
+export const cancelEvent=async(req,res)=>{
+  const {eventId,proUserId}=req.body;
+  try {
+    
+    const proUser = await ProUser.findById(proUserId);
+    if (!proUser) {
+      return res.status(401).json({ success: false, msg: 'Unauthorized action' });
+    }
+
+    const event = await Event.findById(eventId);
+    if (!event) {
+      return res.status(404).json({ success: false, msg: 'Event not found' });
+    }
+
+    await event.deleteOne(); 
+
+    
+    res.status(200).json({ success: true, msg: 'Event deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting event:', error); 
+    res.status(500).json({ success: false, msg: 'Error deleting event' });
+  }
+}
