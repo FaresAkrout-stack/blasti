@@ -1,8 +1,9 @@
 import express from 'express';
-import { publishEvent } from '../controllers/event.controller.js';
+import { enrollEvent, publishEvent } from '../controllers/event.controller.js';
 
 const EventRouter = express.Router();
 
 EventRouter.post('/publishEvent', publishEvent);
+EventRouter.post('/enrollEvent',enrollEvent);
 
 export default EventRouter;

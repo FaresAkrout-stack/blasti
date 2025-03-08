@@ -47,3 +47,18 @@ export const publishEvent = async (req, res) => {
   }
 };
 
+export const enrollEvent=async(req,res)=>{
+  const {eventId}=req.body;
+  try {
+    const event=await Event.findById(eventId).select('+status');
+    if (!event||event.status!=='approved') {
+      return res.status(400).json({ success: false, msg: 'Event not found'});
+    }
+    if(event.enrollments==event.capacity){
+      return res.status(400).json({success:false,msg:'event capacity is full'});
+    }
+    return res.status(200).json({success:true,msg:'redirecting to paiment gateway ...'});
+  } catch (error) {
+    res.status(500).json({success:false,msg:'error in enrollemnt proccess'});
+  }
+}

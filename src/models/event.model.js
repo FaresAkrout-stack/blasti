@@ -54,6 +54,10 @@ const eventSchema=new mongoose.Schema(
           image: {
             type: String, 
           },
+          enrollments:{
+            type:Number,
+            default:0,
+          },
           status: {
             type: String,
             enum: ["pending", "approved", "rejected"],
