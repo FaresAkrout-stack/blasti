@@ -1,11 +1,20 @@
 import User from "../models/user.model.js";
+import ProUser from "../models/proUser.model.js";
 export const checkBan=async(req,res,next)=>{
-    const {userId}=req.body;
+    const {userId,proUserId}=req.body;
     try {
-        const user=await User.findById(userId);
-        if(!user){
-            return res.status(404).json({success:false,msg:'user not found'});
+        let user;
+        if (userId) {
+             user=await User.findById(userId);
+            if(!user){
+                return res.status(404).json({success:false,msg:'user not found'});
+        }}
+        if(proUserId){
+            user=await ProUser.findById(proUserId);
+            if(!user){
+                return res.status(404).json({success:false,msg:'pro user not found'});}
         }
+
         if(user.bannedUntil&& user.bannedUntil>new Date()){
             return res.status(403).json({success:false,msg:`you are banned until ${user.bannedUntil.toISOString}`});
         }

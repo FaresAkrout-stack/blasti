@@ -1,6 +1,7 @@
 import Admin from '../models/admin.model.js'
 import Event from '../models/event.model.js';
 import User from '../models/user.model.js';
+import ProUser from '../models/proUser.model.js';
 import { notifyProUser } from '../utils/notifyProUser.js';
 
 export const approveEvent = async (req, res) => {
@@ -53,27 +54,48 @@ export const deleteEvent = async (req, res) => {
   }
 };
 export const bannedUser=async(req,res)=>{
-  const {userId,banDuration}=req.body;
+  const {userId,proUserId,banDuration}=req.body;
   try {
-    const user=await User.findById(userId);
-    if(!user) {
-      return res.status(404).json({ success: false, msg: 'User not found'});
-    }
+    let user;
+    if(userId){ 
+      user=await User.findById(userId);
+      if(!user) {
+        return res.status(404).json({ success: false, msg: 'User not found'});
+      }}
+      else if(proUserId){
+         user=await User.findById(proUserId);
+         if(!user) {
+          return res.status(404).json({ success: false, msg: 'User not found'});
+        }}
+        else{
+          return res.status(404).json({ success: false, msg: 'user not found'});
+        }
     user.bannedUntil=new (Date.now()+banDuration);
     await user.save();
+   
     res.status(200).json({success:true,msg:`user banned until ${user.bannedUntil.toISOString}`});
   } catch (error) {
     res.status(500).json({success:false,msg:'error banning user'});
   }
 }
 export const unbanUser=async(req,res)=>{
-  const {userId}=req.body;
+  const {userId,proUserId}=req.body;
   try {
-    const user=await User.findById(userId);
+    let user;
+    if(userId){
+       user=await User.findById(userId);
     if(!user) {
       return res.status(404).json({success:false,msg:'user not found'});
-    }
+    }}
+    else if(proUserId){
+      user=await User.findById(proUserId);
+      if(!user) {
+        return res.status(404).json({success:false,msg:'user not found'});
+    }}
+    else{
+      return res.status(404).json({success:false,msg:'user not found'});}
     user.bannedUntil=null;
+
     await user.save();
     res.status(200).json({success:true,msg:'user unbanned'});
   } catch (error) {
