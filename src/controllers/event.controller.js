@@ -4,7 +4,7 @@ import ProUser from '../models/proUser.model.js'
 import Event from '../models/event.model.js'; 
 
 export const publishEvent = async (req, res) => {
-  const { proUserId, eventCategorie, location, description, price, capacity, eventTime, image,video} = req.body;
+  const { proUserId, title,eventCategorie, location, description, price, capacity, eventTime, image,video} = req.body;
 
   try {
   
@@ -26,6 +26,7 @@ export const publishEvent = async (req, res) => {
    const status= "pending";
     const newEvent = new Event({
       proUserId,
+      title,
       eventCategorie,
       location,
       description,
@@ -54,7 +55,7 @@ export const enrollEvent=async(req,res)=>{
     if (!event||event.status!=='approved') {
       return res.status(400).json({ success: false, msg: 'Event not found'});
     }
-    if(event.enrollments >= event.capacity){
+    if(event.enrollmentsCount >= event.capacity){
       return res.status(400).json({success:false,msg:'event capacity is full'});
     }
     return res.status(200).json({success:true,msg:'redirecting to paiment gateway ...'});
@@ -143,7 +144,7 @@ export const calculateRevenue=async(req,res)=>{
     if(!event){
       return res.status(400).json({success:false,msg:'event not found'});
     }
-    const revenue=event.price*event.enrollments;
+    const revenue=event.price*event.enrollmentsCount;
     event.earnings+=revenue;
     await event.save();
     res.status(200).json({success:true,msg:'Revenue calculated successfully',data:`${revenue} DT`});

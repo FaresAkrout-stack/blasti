@@ -28,6 +28,9 @@ const userSchema=new mongoose.Schema(
       type: Date, 
       default: null, 
   },
+  deviceToken: {
+    type: String, 
+},
 		isVerified: {
 			type: Boolean,
 			default: false,

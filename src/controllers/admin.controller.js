@@ -63,7 +63,7 @@ export const bannedUser=async(req,res)=>{
         return res.status(404).json({ success: false, msg: 'User not found'});
       }}
       else if(proUserId){
-         user=await User.findById(proUserId);
+         user=await ProUser.findById(proUserId);
          if(!user) {
           return res.status(404).json({ success: false, msg: 'User not found'});
         }}

@@ -19,6 +19,10 @@ const eventSchema=new mongoose.Schema(
             ref: 'Reservation', 
             
           },
+          title:{
+            type:String,
+            
+          },
           earnings:{
             type:Double,
 
@@ -59,9 +63,18 @@ const eventSchema=new mongoose.Schema(
           image: {
             type: String, 
           },
-          enrollments:{
-            type:Number,
-            default:0,
+          enrollments: [{
+            userId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User',
+            },
+            confirmed: {
+                type: Boolean,
+                default: false,
+            }}],
+            enrollmentsCount: {
+              type: Number,
+              default: 0,
           },
           status: {
             type: String,

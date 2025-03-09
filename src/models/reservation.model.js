@@ -4,7 +4,12 @@ const reservationSchema=new mongoose.Schema(
         userId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User', 
-            required: true
+            required:false
+          },
+          proUserId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'ProUser', 
+            required: false
           },
           reservationTime:{
             type:Date,
