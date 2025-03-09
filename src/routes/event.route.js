@@ -1,8 +1,9 @@
 import express from 'express';
 import { calculateRevenue, cancelEvent, enrollEvent, publishEvent, showRating, updateEventDetails } from '../controllers/event.controller.js';
+import { checkBan } from '../middlewares/checkBan.middleware.js';
 
 const EventRouter = express.Router();
-
+EventRouter.use(checkBan);
 EventRouter.post('/publishEvent', publishEvent);
 EventRouter.post('/enrollEvent',enrollEvent);
 EventRouter.post('/updateEvent',updateEventDetails);

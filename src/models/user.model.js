@@ -24,6 +24,10 @@ const userSchema=new mongoose.Schema(
 			type: Date,
 			default: Date.now,
 		},
+    bannedUntil: {
+      type: Date, 
+      default: null, 
+  },
 		isVerified: {
 			type: Boolean,
 			default: false,
