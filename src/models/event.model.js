@@ -1,6 +1,7 @@
-import { text } from "express";
+
 import { Double } from "mongodb";
 import mongoose from "mongoose";
+import User from "./user.model.js";
 const eventSchema=new mongoose.Schema(
     {
         userId: {
@@ -22,9 +23,13 @@ const eventSchema=new mongoose.Schema(
             type:Double,
 
           },
-          rating:{
-            type:Double,
-          },
+          ratings: [{
+            type: Number, 
+        }],
+          raters: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User', 
+          }],
           eventCategorie:{
             type:String,
             required:true,

@@ -139,14 +139,39 @@ export const cancelEvent=async(req,res)=>{
 export const calculateRevenue=async(req,res)=>{
   const {eventId}=req.body;
   try {
-    const event=await Event.findById(eventId);
+    const event=await Event.findById(eventId).select('+earnings');
     if(!event){
       return res.status(400).json({success:false,msg:'event not found'});
     }
     const revenue=event.price*event.enrollments;
+    event.earnings+=revenue;
+    await event.save();
     res.status(200).json({success:true,msg:'Revenue calculated successfully',data:`${revenue} DT`});
   } catch (error) {
     res.status(500).json({success:false,msg:'error calculating revenue'});
     
   }  
-}
+};
+export const showRating = async (req, res) => {
+  const { eventId } = req.body;
+
+  try {
+      const event = await Event.findById(eventId);
+      if (!event) {
+          return res.status(404).json({success: false,message:"Event not found" });
+      }
+
+      const totalRatings = event.ratings.reduce((sum,rating) => sum + rating, 0);
+      const averageRating = event.ratings.length>0 ? totalRatings / event.ratings.length : 0;
+
+      res.status(200).json({
+          success: true,
+          message: "Rating fetched successfully",
+          data: averageRating,
+      });
+
+  } catch (error) {
+      console.error("Error showing ratings:", error);
+      res.status(500).json({success: false,message:"Error showing ratings" });
+  }
+};
