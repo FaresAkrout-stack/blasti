@@ -2,6 +2,7 @@
 import ProUser from '../models/proUser.model.js'
 
 import Event from '../models/event.model.js'; 
+import { generateEventDetails, generateEventImage } from '../utils/openaiClient.js';
 
 export const publishEvent = async (req, res) => {
   const { proUserId, title,eventCategorie, location, description, price, capacity, eventTime, image,video} = req.body;
@@ -174,5 +175,46 @@ export const showRating = async (req, res) => {
   } catch (error) {
       console.error("Error showing ratings:", error);
       res.status(500).json({success: false,message:"Error showing ratings" });
+  }
+};
+export const createEventWithAI = async (req, res) => {
+  const { userPrompt,userId } = req.body; 
+
+  try {
+      
+      const aiResponse = await generateEventDetails(
+          `Generate a creative event based on the following input: ${userPrompt}. 
+          Include a title, description, location, and category.`
+      );
+
+      
+      const eventDetails = JSON.parse(aiResponse);
+
+    
+      const imagePrompt = `A vibrant and creative image for an event titled "${eventDetails.title}". 
+                          The event is a ${eventDetails.category} taking place in ${eventDetails.location}. 
+                          The image should capture the essence of the event: ${eventDetails.description}.`;
+      const imageUrl = await generateEventImage(imagePrompt);
+
+      
+      const event = new Event({
+          title: eventDetails.title,
+          description: eventDetails.description,
+          location: eventDetails.location,
+          eventCategorie: eventDetails.category,
+          proUserId: req.user._id, 
+          eventTime: new Date(), 
+          capacity: 100, 
+          price: 0, 
+          image: imageUrl, 
+      });
+
+    
+      await event.save();
+
+      res.status(201).json({ success: true, message: "Event created successfully", event });
+  } catch (error) {
+      console.error("Error creating event with AI:", error);
+      res.status(500).json({ success: false, message: "Error creating event with AI" });
   }
 };
