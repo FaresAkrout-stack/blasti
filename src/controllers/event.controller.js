@@ -182,6 +182,7 @@ export const createEventWithAI = async (req, res) => {
 
   try {
       
+    
       const aiResponse = await generateEventDetails(
           `Generate a creative event based on the following input: ${userPrompt}. 
           Include a title, description, location, and category.`

@@ -1,15 +1,18 @@
+# Use Node.js 18 as the base image
 FROM node:18
 
-WORKDIR /src 
+WORKDIR /backend
 
 COPY package*.json ./
-
 
 RUN npm install
 
 RUN npm install -g nodemon
 
-COPY . /backend
+
+
+
+COPY backend/. /app/
 
 EXPOSE 8000
 
