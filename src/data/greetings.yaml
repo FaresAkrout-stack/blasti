@@ -1,0 +1,193 @@
+categories:
+  - greetings
+conversations:
+  - - Hello
+    - Hi
+  - - Hi
+    - Hello
+  - - Greetings!
+    - Hello
+  - - Hello
+    - Greetings!
+  - - Hi, How is it going?
+    - Good
+  - - Hi, How is it going?
+    - Fine
+  - - Hi, How is it going?
+    - Okay
+  - - Hi, How is it going?
+    - Great
+  - - Hi, How is it going?
+    - Could be better.
+  - - Hi, How is it going?
+    - Not so great.
+  - - How are you doing?
+    - Good.
+  - - How are you doing?
+    - Very well, thanks.
+  - - How are you doing?
+    - Fine, and you?
+  - - Nice to meet you.
+    - Thank you.
+  - - How do you do?
+    - I'm doing well.
+  - - How do you do?
+    - I'm doing well. How are you?
+  - - Hi, nice to meet you.
+    - Thank you. You too.
+  - - It is a pleasure to meet you.
+    - Thank you. You too.
+  - - Top of the morning to you!
+    - Thank you kindly.
+  - - Top of the morning to you!
+    - And the rest of the day to you.
+  - - What's up?
+    - Not much.
+  - - What's up?
+    - Not too much.
+  - - What's up?
+    - Not much, how about you?
+  - - What's up?
+    - Nothing much.
+  - - What's up?
+    - The sky's up but I'm fine thanks. What about you?
+  - - How are you?
+    - Very fine, what about you?
+  - - Hey!
+    - Hey there!
+  - - Hey!
+    - Hi! How can I help you?
+  - - Good morning!
+    - Good morning! How are you today?
+  - - Good morning!
+    - Morning! What's on your mind?
+  - - Good afternoon!
+    - Good afternoon! How can I assist you?
+  - - Good evening!
+    - Good evening! How's your day going?
+  - - Good evening!
+    - Evening! What can I do for you?
+  - - Howdy!
+    - Howdy! What's new?
+  - - Howdy!
+    - Hey! How can I help you today?
+  - - Yo!
+    - Yo! What's up?
+  - - Yo!
+    - Hey! How's it going?
+  - - Hi there!
+    - Hello! How can I assist you?
+  - - Hi there!
+    - Hi! What's on your mind?
+  - - Hey there!
+    - Hey! How are you doing?
+  - - Hey there!
+    - Hi there! How can I help you?
+  - - How's everything?
+    - Everything's good, thanks for asking!
+  - - How's everything?
+    - All is well, how about you?
+  - - How's life?
+    - Life's good! How about yours?
+  - - How's life?
+    - Can't complain! What about you?
+  - - How have you been?
+    - I've been great, thanks! And you?
+  - - How have you been?
+    - Pretty good! How about yourself?
+  - - Long time no see!
+    - I know! How have you been?
+  - - Long time no see!
+    - Yeah, it's been a while! What's new?
+  - - What's new?
+    - Not much, just the usual. How about you?
+  - - What's new?
+    - Same old, same old. What's up with you?
+  - - How's your day going?
+    - It's going well, thanks! How about yours?
+  - - How's your day going?
+    - Pretty good so far! How's yours?
+  - - How's your day been?
+    - It's been great! How about you?
+  - - How's your day been?
+    - Not bad! How's yours?
+  - - How are things?
+    - Things are good! How about you?
+  - - How are things?
+    - Everything's fine! What about you?
+  - - How are you holding up?
+    - I'm doing alright, thanks! How about you?
+  - - How are you holding up?
+    - Hanging in there! How about yourself?
+  - - What's happening?
+    - Not much, just here! What's up with you?
+  - - What's happening?
+    - Same old, same old! How about you?
+  - - How's it hanging?
+    - It's hanging loose! How about you?
+  - - How's it hanging?
+    - All good here! What's up with you?
+  - - How's your week been?
+    - It's been good! How about yours?
+  - - How's your week been?
+    - Not bad! How's yours going?
+  - - How's your weekend going?
+    - It's going great! How about yours?
+  - - How's your weekend going?
+    - Pretty good so far! How's yours?
+  - - How's your evening going?
+    - It's going well! How about yours?
+  - - How's your evening going?
+    - Not bad! How's yours?
+  - - How's your morning going?
+    - It's going great! How about yours?
+  - - How's your morning going?
+    - Pretty good so far! How's yours?
+  - - How's your afternoon going?
+    - It's going well! How about yours?
+  - - How's your afternoon going?
+    - Not bad! How's yours?
+  - - How's your night going?
+    - It's going well! How about yours?
+  - - How's your night going?
+    - Pretty good so far! How's yours?
+  - - How's your day treating you?
+    - It's treating me well! How about you?
+  - - How's your day treating you?
+    - Not bad! How's yours?
+  - - How's life treating you?
+    - Life's treating me well! How about you?
+  - - How's life treating you?
+    - Can't complain! How about you?
+  - - How's everything treating you?
+    - Everything's good! How about you?
+  - - How's everything treating you?
+    - All is well! How about you?
+  - - How's the world treating you?
+    - The world's treating me well! How about you?
+  - - How's the world treating you?
+    - Can't complain! How about you?
+  - - How's your week treating you?
+    - It's treating me well! How about you?
+  - - How's your week treating you?
+    - Not bad! How's yours?
+  - - How's your weekend treating you?
+    - It's treating me well! How about you?
+  - - How's your weekend treating you?
+    - Pretty good so far! How's yours?
+  - - How's your evening treating you?
+    - It's treating me well! How about you?
+  - - How's your evening treating you?
+    - Not bad! How's yours?
+  - - How's your morning treating you?
+    - It's treating me well! How about you?
+  - - How's your morning treating you?
+    - Pretty good so far! How's yours?
+  - - How's your afternoon treating you?
+    - It's treating me well! How about you?
+  - - How's your afternoon treating you?
+    - Not bad! How's yours?
+  - - How's your night treating you?
+    - It's treating me well! How about you?
+  - - How's your night treating you?
+    - Pretty good so far! How's yours?

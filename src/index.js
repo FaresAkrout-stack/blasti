@@ -7,6 +7,7 @@ import adminRouter from "./routes/admin.route.js";
 import userRouter from "./routes/user.route.js";
 import './cron/cronJobs.js';
 import reservationRouter from "./routes/reservation.route.js";
+import chatbotRouter from "./routes/chatbot.route.js";
 const app= express()
 dotenv.config()
 const port=process.env.PORT
@@ -16,6 +17,8 @@ app.use('/api/event', EventRouter);
 app.use('/api/admin', adminRouter);
 app.use('/api/user', userRouter);
 app.use('/api/reservation',reservationRouter);
+app.use('/api/chatbot',chatbotRouter);
+
 app.listen(port, async () => {
     try {
       await connectDB();

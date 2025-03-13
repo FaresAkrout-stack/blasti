@@ -1,4 +1,4 @@
-import User from "../models/user.model.js"
+import User from "../models/mongodb/user.model.js"
 
 export const  sendPushNotification=async(userId,msg)=>{
     const user=await User.findById(userId);

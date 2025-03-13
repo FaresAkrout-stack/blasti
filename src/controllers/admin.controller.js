@@ -1,7 +1,7 @@
-import Admin from '../models/admin.model.js'
-import Event from '../models/event.model.js';
-import User from '../models/user.model.js';
-import ProUser from '../models/proUser.model.js';
+import Admin from '../models/mongodb/admin.model.js'
+import Event from '../models/mongodb/event.model.js';
+import User from '../models/mongodb/user.model.js';
+import ProUser from '../models/mongodb/proUser.model.js';
 import { notifyProUser } from '../utils/notifyProUser.js';
 
 export const approveEvent = async (req, res) => {

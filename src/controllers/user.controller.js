@@ -1,4 +1,4 @@
-import Event from "../models/event.model.js";
+import Event from "../models/mongodb/event.model.js";
 
 
 export const rateEvent = async (req, res) => {

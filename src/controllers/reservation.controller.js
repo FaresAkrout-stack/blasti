@@ -1,6 +1,6 @@
-import Event from "../models/event.model.js";
-import Reservation from "../models/reservation.model.js";
-import User from "../models/user.model.js";
+import Event from "../models/mongodb/event.model.js";
+import Reservation from "../models/mongodb/reservation.model.js";
+import User from "../models/mongodb/user.model.js";
 import { scheduleNotification } from "../utils/notificationScheduler.js";
 
 export const  makeReservation=async(req,res)=>{

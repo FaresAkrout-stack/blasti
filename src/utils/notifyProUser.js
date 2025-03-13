@@ -1,4 +1,4 @@
-import ProUser from '../models/proUser.model.js';
+import ProUser from '../models/mongodb/proUser.model.js';
 
 export const notifyProUser = async (event) => {
   try {

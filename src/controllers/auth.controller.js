@@ -1,4 +1,4 @@
-import User from "../models/user.model.js";
+import User from "../models/mongodb/user.model.js";
 import bcrypt from 'bcrypt';
 import { validatePassword } from "../utils/verifPass.js";
 import { generateTokenAndSetCookie } from "../utils/generateCokAndToken.js";

@@ -1,5 +1,5 @@
 import cron from 'node-cron';
-import Event from '../models/event.model.js';
+import Event from '../models/mongodb/event.model.js';
 
 
 cron.schedule('0 * * * *', async () => {

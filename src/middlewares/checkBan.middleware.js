@@ -1,5 +1,5 @@
-import User from "../models/user.model.js";
-import ProUser from "../models/proUser.model.js";
+import User from "../models/mongodb/user.model.js";
+import ProUser from "../models/mongodb/proUser.model.js";
 export const checkBan=async(req,res,next)=>{
     const {userId,proUserId}=req.body;
     try {

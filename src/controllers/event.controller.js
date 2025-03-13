@@ -1,7 +1,7 @@
 
-import ProUser from '../models/proUser.model.js'
+import ProUser from '../models/mongodb/proUser.model.js'
 
-import Event from '../models/event.model.js'; 
+import Event from '../models/mongodb/event.model.js'; 
 import { generateEventDetails, generateEventImage } from '../utils/openaiClient.js';
 
 export const publishEvent = async (req, res) => {
