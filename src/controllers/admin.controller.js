@@ -104,3 +104,21 @@ export const unbanUser=async(req,res)=>{
   }
 
 };
+export const fetchAllUsers=async(req,res)=>{
+  try{
+  const page = parseInt(req.query.page) || 1; 
+  const limit = parseInt(req.query.limit) || 10; 
+  const skip = (page - 1) * limit;
+
+  const users = await User.find().skip(skip).limit(limit);
+  const totalUsers = await User.countDocuments();
+
+  res.status(200).json({
+    users,
+    totalUsers,
+    totalPages: Math.ceil(totalUsers / limit),
+    currentPage: page,
+  });
+} catch (error) {
+  res.status(500).json({success:false, message: 'Error fetching users', error: error.message });
+}}

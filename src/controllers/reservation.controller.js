@@ -85,3 +85,30 @@ export const cancelReservation = async (req, res) => {
         res.status(500).json({ success: false, message: "Error canceling reservation" });
     }
 };
+export const confirmReservation=async(req,res)=>{
+    const {eventId,userId}=req.body;
+    try {
+        const event=await Event.findById(eventId);
+        if(!event){
+            return res.status(404).json({success:false,msg:"Event not found"});
+            }
+            const user=await User.findById(userId);
+        if(!user){
+                return res.status(404).json({success:false,msg:"User not found"});
+                }
+                const enrollmentIndex = event.enrollments.findIndex(enrollment => enrollment.userId.equals(userId));
+        if (enrollmentIndex === -1) {
+                    return res.status(400).json({ success: false, message: "User does not have a reservation for this event" });
+        }
+
+        event.enrollments[enrollmentIndex].confirmed = true;
+        await event.save();
+
+        res.status(200).json({success:true,msg:'reservationn confirmed successfully '});
+        
+        
+    } catch (error) {
+        res.status(500).json({success:false,msg:'error confirming reservation'});
+    }
+
+}
