@@ -122,3 +122,103 @@ export const fetchAllUsers=async(req,res)=>{
 } catch (error) {
   res.status(500).json({success:false, message: 'Error fetching users', error: error.message });
 }}
+
+export const fetchAllEvents=async(req,res)=>{
+    try {
+        const page=parseInt(req.query.page) || 1;
+        const limit=parseInt(req.query.limit) || 10;
+        const skip=(page-1)*limit;
+        const events=await Event.find().skip(skip).limit(limit); 
+        const totalEvents=await Event.countDocuments();
+        res.status(200).json({
+          events,
+          totalEvents,
+          totalPages: Math.ceil(totalEvents / limit),
+    currentPage: page,
+  });
+          
+    } catch (error) {
+      res.status(500).json({success:false,msg:'error fetching events'});
+    }
+};
+// controllers/statisticsController.js
+
+
+export const systemStatistics = async (req, res) => {
+  try {
+   
+    const totalUsers = await User.countDocuments();
+
+   
+    const totalProUsers = await ProUser.countDocuments();
+
+  
+    const proUserEvents = await Event.aggregate([
+      {
+        $group: {
+          _id: '$proUserId', 
+          totalEvents: { $sum: 1 }, 
+        },
+      },
+      {
+        $lookup: {
+          from: 'prousers', 
+          localField: '_id',
+          foreignField: '_id',
+          as: 'proUserDetails',
+        },
+      },
+      {
+        $unwind: '$proUserDetails', 
+      },
+      {
+        $project: {
+          proUserId: '$_id',
+          proUserName: '$proUserDetails.username',
+          totalEvents: 1,
+        },
+      },
+    ]);
+
+   
+    const userEnrollments = await Event.aggregate([
+      {
+        $unwind: '$enrollments', 
+      },
+      {
+        $group: {
+          _id: '$enrollments.userId',
+          totalEnrollments: { $sum: 1 }, 
+        },
+      },
+      {
+        $lookup: {
+          from: 'users', 
+          localField: '_id',
+          foreignField: '_id',
+          as: 'userDetails',
+        },
+      },
+      {
+        $unwind: '$userDetails', 
+      },
+      {
+        $project: {
+          userId: '$_id',
+          userName: '$userDetails.username',
+          totalEnrollments: 1,
+        },
+      },
+    ]);
+
+    res.status(200).json({
+      totalUsers,
+      totalProUsers,
+      proUserEvents,
+      userEnrollments,
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching statistics', error: error.message });
+  }
+};
+
