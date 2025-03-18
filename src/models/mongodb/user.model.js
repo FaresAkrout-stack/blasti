@@ -8,6 +8,13 @@ const userSchema=new mongoose.Schema(
             unique:true,
             
         },
+        userName:{
+          type:String,
+          required:true,
+          unique:true,
+          
+      },
+        
         password:{
             type:String,
             required:true,
@@ -44,7 +51,7 @@ const userSchema=new mongoose.Schema(
   
     {timestamps:true},
 );
-//aawidha
+
 userSchema.pre('save', async function (next) {
     if (this.isModified('password')) {
       this.password = await bcrypt.hash(this.password, 10); 

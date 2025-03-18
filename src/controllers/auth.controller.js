@@ -9,7 +9,7 @@ import {
 	sendWelcomeEmail}from '../modules/email.js';
 
 	export const signup = async (req, res) => {
-		const { email, password } = req.body;
+		const { email, password,userName } = req.body;
 	  
 		try {
 		  const isExist = await User.findOne({ email });
@@ -26,6 +26,7 @@ import {
 	  
 		  const newUser = new User({
 			email,
+			userName,
 			password: hashedPass,
 			verificationToken,
 			verificationTokenExpiresAt: Date.now() + 24 * 60 * 60 * 1000,

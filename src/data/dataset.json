@@ -1,0 +1,114 @@
+[
+    {
+      "question": "What is the purpose of this platform?",
+      "answer": "This platform is designed to help users manage their events efficiently, including event creation, ticket sales, and attendee management. It also helps you purchase tickets online."
+    },
+    {
+      "question": "What is the purpose of this platform?",
+      "answer": "Our platform allows you to create, manage, and promote events seamlessly. You can also buy tickets for events hosted by others."
+    },
+    {
+      "question": "How do I create an event?",
+      "answer": "To create an event, you need to upgrade your plan to ProUser. Then, go to the 'Create Event' section, fill in the required details, and click 'Create'."
+    },
+    {
+      "question": "How do I create an event?",
+      "answer": "First, upgrade to ProUser. After that, navigate to the 'Create Event' page, enter the event details, and hit 'Create' to publish your event."
+    },
+    {
+      "question": "What payment methods are supported?",
+      "answer": "We support credit/debit cards."
+    },
+    {
+      "question": "What payment methods are supported?",
+      "answer": "Currently, we accept payments via credit and debit cards. More options will be added soon!"
+    },
+    {
+      "question": "Who are you?",
+      "answer": "I am Blasti's chatbot, here to answer your questions and help you use the platform."
+    },
+    {
+      "question": "Who are you?",
+      "answer": "I'm Blasti's chatbot. How can I help you today?"
+    },
+    {
+      "question": "Why was I banned?",
+      "answer": "You may have been banned for violating our platform's policies, such as spamming, inappropriate behavior, or fraudulent activity."
+    },
+    {
+      "question": "Why was I banned?",
+      "answer": "Bans are usually issued for policy violations. Please review our community guidelines or contact support for more details."
+    },
+    {
+      "question": "How do I delete an event?",
+      "answer": "To delete an event, navigate to the 'Event Deletion' section, select the event, and press 'Delete'. You must be logged in to perform this action."
+    },
+    {
+      "question": "How do I delete an event?",
+      "answer": "Go to the 'Manage Events' page, find the event you want to delete, and click 'Delete'. Make sure you're logged in first."
+    },
+    {
+      "question": "How do I enroll in an event?",
+      "answer": "Click on the event you're interested in, press 'Enroll', and provide the necessary payment information. Hurry up, as events may fill up quickly!"
+    },
+    {
+      "question": "How do I enroll in an event?",
+      "answer": "Find the event you want to join, click 'Enroll', and complete the payment process. Don't wait too long—events can sell out fast!"
+    },
+    {
+      "question": "How do I upgrade to ProUser?",
+      "answer": "To upgrade to ProUser, go to your account settings, select 'Upgrade Plan', and follow the instructions to complete the payment."
+    },
+    {
+      "question": "How do I upgrade to ProUser?",
+      "answer": "Navigate to 'Account Settings', choose 'Upgrade to ProUser', and proceed with the payment to unlock advanced features."
+    },
+    {
+      "question": "What are the benefits of ProUser?",
+      "answer": "ProUser allows you to create and manage events, access advanced analytics, and promote your events to a larger audience."
+    },
+    {
+      "question": "What are the benefits of ProUser?",
+      "answer": "With ProUser, you can create unlimited events, track attendee data, and use premium marketing tools to grow your audience."
+    },
+    {
+      "question": "How do I contact support?",
+      "answer": "You can contact support by emailing support@blasti.com or calling +123-456-7890."
+    },
+    {
+      "question": "How do I contact support?",
+      "answer": "Reach out to our support team at support@blasti.com or call +123-456-7890 for assistance."
+    },
+    {
+      "question": "What happens if an event is canceled?",
+      "answer": "If an event is canceled, you will receive a full refund automatically. Please check your email for confirmation."
+    },
+    {
+      "question": "What happens if an event is canceled?",
+      "answer": "In case of cancellation, all attendees will be refunded. You'll receive an email with further details."
+    },
+    {
+      "question": "Can I transfer my ticket to someone else?",
+      "answer": "Yes, you can transfer your ticket. Go to 'My Tickets', select the event, and click 'Transfer Ticket'."
+    },
+    {
+      "question": "Can I transfer my ticket to someone else?",
+      "answer": "To transfer a ticket, visit 'My Tickets', choose the event, and use the 'Transfer Ticket' option."
+    },
+    {
+      "question": "How do I check my ticket status?",
+      "answer": "Log in to your account, go to 'My Tickets', and you'll see the status of all your purchased tickets."
+    },
+    {
+      "question": "How do I check my ticket status?",
+      "answer": "You can view your ticket status under 'My Tickets' in your account dashboard."
+    },
+    {
+      "question": "What is the refund policy?",
+      "answer": "Refunds are available if the event is canceled or rescheduled. Otherwise, refunds are subject to the event organizer's policy."
+    },
+    {
+      "question": "What is the refund policy?",
+      "answer": "You can get a refund if the event is canceled. For other cases, please check the organizer's refund policy."
+    }
+  ]

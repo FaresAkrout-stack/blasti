@@ -141,7 +141,7 @@ export const fetchAllEvents=async(req,res)=>{
       res.status(500).json({success:false,msg:'error fetching events'});
     }
 };
-// controllers/statisticsController.js
+
 
 
 export const systemStatistics = async (req, res) => {
