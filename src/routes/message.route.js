@@ -3,8 +3,7 @@ import { sendMessage, getMessages, markMessagesAsRead } from "../controllers/mes
 
 const messageRouter = express.Router();
 
-messageRouter.post("/send", sendMessage);
-
+messageRouter.post("/send/:senderId/:receiverId", sendMessage);
 messageRouter.get("/:user1/:user2", getMessages);
 
 messageRouter.post("/mark-as-read", markMessagesAsRead);

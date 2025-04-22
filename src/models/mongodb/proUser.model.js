@@ -16,7 +16,8 @@ const ProUserSchema = new mongoose.Schema({
 }, {
   discriminatorKey: '__t', 
   timestamps: true, 
-});
+},
+{ collection: 'prousers' },);
 
 const ProUser = User.discriminator('ProUser', ProUserSchema);
 export default ProUser;

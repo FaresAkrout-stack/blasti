@@ -1,4 +1,4 @@
-import OpenAI from 'openai';
+/*import OpenAI from 'openai';
 
 
 const openai = new OpenAI({
@@ -40,4 +40,4 @@ export const generateEventImage = async (prompt) => {
     }
 };
 
-export default openai;
+export default openai;*/

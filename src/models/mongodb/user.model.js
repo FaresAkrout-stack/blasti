@@ -19,7 +19,7 @@ const userSchema=new mongoose.Schema(
             type:String,
             required:true,
             minlength:6,
-            select: false, 
+             
             
         },
         role: {
@@ -38,6 +38,11 @@ const userSchema=new mongoose.Schema(
   deviceToken: {
     type: String, 
 },
+profilePic: {
+  type: String,
+  default: "", // Will store URL or path
+},
+
 		isVerified: {
 			type: Boolean,
 			default: false,

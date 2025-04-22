@@ -1,4 +1,5 @@
 import User from "../models/mongodb/user.model.js";
+import jwt from "jsonwebtoken";
 import bcrypt from 'bcrypt';
 import { validatePassword } from "../utils/verifPass.js";
 import { generateTokenAndSetCookie } from "../utils/generateCokAndToken.js";
@@ -7,6 +8,8 @@ import {
 	sendResetSuccessEmail,
 	sendVerificationEmail,
 	sendWelcomeEmail}from '../modules/email.js';
+import { checkBan } from "../middlewares/checkBan.middleware.js";
+import ProUser from "../models/mongodb/proUser.model.js";
 
 	export const signup = async (req, res) => {
 		const { email, password,userName } = req.body;
@@ -59,7 +62,7 @@ import {
 		user.verificationTokenExpiresAt = undefined;
 		await user.save();
 
-		await sendWelcomeEmail(user.email, user.name);
+		
 
 		res.status(200).json({
 			success: true,
@@ -74,6 +77,27 @@ import {
 		res.status(500).json({ success: false, message: "Server error" });
 	}
 };
+export const resendVerificationCode = async (req, res) => {
+	const { email } = req.body;
+	try {
+	  const user = await User.findOne({ email });
+	  if (!user || user.isVerified) {
+		return res.status(400).json({ message: 'Invalid request' });
+	  }
+  
+	  const newCode = Math.floor(100000 + Math.random() * 900000).toString();
+	  user.verificationToken = newCode;
+	  user.verificationTokenExpiresAt = Date.now() + 24 * 60 * 60 * 1000;
+	  await user.save();
+  
+	  await sendVerificationEmail(email, newCode);
+  
+	  res.status(200).json({ message: "Verification code sent again" });
+	} catch (err) {
+	  res.status(500).json({ message: "Failed to resend verification code" });
+	}
+  };
+  
 export const checkAuth = async (req, res) => {
 	try {
 		const user = await User.findById(req.userId).select("-password");
@@ -88,47 +112,65 @@ export const checkAuth = async (req, res) => {
 	}};
 	export const login = async (req, res) => {
 		const { email, password } = req.body;
-	
+	  
 		try {
-			
-			const user = await User.findOne({ email }).select("+password");
-	
-			if (!user) {
-				return res.status(400).json({ success: false, message: "Invalid email" });
-			}
-	
-			console.log("Entered Password:", password);
-			console.log("Stored Hashed Password:", user.password);
-	
-			if (!user.password) {
-				return res.status(500).json({ success: false, message: "Password not found for this user" });
-			}
-	
-			const isPasswordValid = await bcrypt.compare(password, user.password);
-			if (!isPasswordValid) {
-				console.log("Password does not match");
-				return res.status(400).json({ success: false, message: "Invalid password" });
-			}
-	
-			
-			generateTokenAndSetCookie(res, user._id);
-			user.lastLogin = new Date();
-			await user.save();
-	
-			res.status(200).json({
-				success: true,
-				message: "Logged in successfully",
-				user: {
-					...user._doc,
-					password: undefined, 
-				},
+		  // Try to find a regular user
+		  let user = await User.findOne({ email }).select("+password");
+	  
+		  // If user not found, try to find a ProUser
+		  if (!user) {
+			user = await ProUser.findOne({ email }).select("+password");
+		  }
+	  
+		  if (!user) {
+			return res.status(400).json({ success: false, message: "Invalid email" });
+		  }
+	  
+		  console.log("Entered Password:", password);
+		  console.log("Stored Hashed Password:", user.password);
+	  
+		  if (!user.password) {
+			return res.status(500).json({ success: false, message: "Password not found for this user" });
+		  }
+	  
+		  // Validate the entered password
+		  const isPasswordValid = await bcrypt.compare(password, user.password);
+		  if (!isPasswordValid) {
+			console.log("Password does not match");
+			return res.status(400).json({ success: false, message: "Invalid password" });
+		  }
+	  
+		  // Check if the user is banned (optional)
+		  const checkBanResult = await checkBan({ body: { userId: user._id } }, res, () => {});
+		  if (checkBanResult) {
+			return res.status(403).json({
+			  success: false,
+			  message: `You are banned until ${new Date(user.bannedUntil).toISOString()}`,
 			});
+		  }
+	  
+		  // Generate token and send it in the response
+		  const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+	  
+		  // Set token in the response
+		  res.status(200).json({
+			success: true,
+			message: "Logged in successfully",
+			token, // Send token in the response body
+			user: {
+			  ...user._doc,
+			  password: undefined, // Don't send password in the response
+			},
+		  });
+	  
+		  // Optionally update the last login time
+		  user.lastLogin = new Date();
+		  await user.save();
 		} catch (error) {
-			console.error("Error in login: ", error);
-			res.status(400).json({ success: false, message: error.message });
+		  console.error("Error in login: ", error);
+		  res.status(400).json({ success: false, message: error.message });
 		}
-	};
-	
+	  };
 	
 	export const logout = async (req, res) => {
 		res.clearCookie("token");
